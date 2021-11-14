@@ -1,0 +1,147 @@
+{% extends 'index.html' %}
+    {% block bookingform %}
+        <div class="container" style="background-color: aliceblue; border-radius: 15px;">
+            <br>
+            <center><h1>Book  Demo Meachine</h1></center>
+            <form class="row g-3 needs-validation " action="" method="post" >
+                {% csrf_token %}
+                <!-- k -->
+                <div class="col-md-12">
+                <label for="validationCustom01" class="form-label">Inbody User</label>
+                <select class="form-select" id="validationCustom01" required name="user_name">
+                    <option selected disabled >---Select---</option>
+                    {% for user in users %}
+                    <option value="{{user.id}}">{{user}}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid state.
+                </div>
+                </div>
+                <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Institution Name</label>
+                <input type="text" class="form-control" id="validationCustom02" value=" "  name="institution_name" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Client Name</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="" name="client_name" required>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Mobile Number</label>
+                    <input type="number" class="form-control" id="validationCustom02" value="" name="mobile_no" required>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Email ID</label>
+                    <input type="email" class="form-control" id="validationCustom02" value=" "   name="email">
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">City</label>
+                    <input type="text" class="form-control" id="validationCustom02" value=" " required name="city">
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">State</label>
+                <input type="text" class="form-control" id="validationCustom03" required name="state">
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Address Line 1</label>
+                    <textarea type="text" class="form-control" id="validationCustom02" value=" " required name="addr1"></textarea>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Address Line 2</label>
+                    <textarea type="text" class="form-control" id="validationCustom02" value=" "   name="addr2"></textarea>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom05" class="form-label">Zip Code</label>
+                    <input type="number" class="form-control" id="validationCustom05" required name="zip_code">
+                    <div class="invalid-feedback">
+                    Please provide a valid zip.
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <label for="validationCustom05" class="form-label">Region</label>
+                    <input type="text" class="form-control" id="validationCustom05" required name="region">
+                    <div class="invalid-feedback">
+                        Please provide a valid zip.
+                    </div>
+                </div> -->
+                <div class="col-md-3">
+                    <label for="validationCustom044" class="form-label">Region</label>
+                    <select class="form-select" id="validationCustom0444" required name="region"  onchange="myFunction()">
+                    {% for region in indian_regions %}
+                        <option selected   value="{{region.id}}">{{region}}</option>
+                    {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">
+                    Please select a valid state.
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom055" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="validationCustom055" required name="start_date">
+                    <div class="invalid-feedback">
+                    Please provide a valid zip.
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom05" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="validationCustom05" required name="end_date">
+                    <div class="invalid-feedback">
+                    Please provide a valid zip.
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom04" class="form-label">Select Demo Machine</label>
+                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    {% for meachine in meachines_list %}
+                        <option selected   value="{{meachine.id}}">{{meachine}}</option>
+                    {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">
+                    Please select a valid state.
+                    </div>
+                </div>
+        
+                <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                    You must agree before submitting.
+                    </div>
+                </div>
+                </div>
+                <div class="col-12">
+                <button class="btn btn-primary" type="submit" value="submit">Submit form</button>
+                </div>
+            </form>        
+            <br><br>
+        </div>
+    {% endblock %}
+

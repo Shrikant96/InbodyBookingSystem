@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+    {% block recordTable %}
+        <div class="container-fluid">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Institution  </th>
+                    <th scope="col">Meachine</th>
+                    <th scope="col">InbodyUser </th>
+                    <th scope="col">ClientName </th>
+                    <th scope="col">ClientMobile </th>
+                    <th scope="col">ClientEmail </th>
+                    <th scope="col">City </th>
+                    <th scope="col">State </th>
+                    <th scope="col">Addr </th>
+                    <th scope="col">ZipCode </th>
+                    <th scope="col">Region </th>
+                    <th scope="col">StartDate </th>
+                    <th scope="col">EndDate </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in records %}
+                    <tr>
+                        <th scope="row">{{data.id}}</th>
+                        <td>{{data.institution_name}}</td>
+                        <td>{{data.meachine_name.meachine_name}}</td>
+                        <td>{{data.inbodyUser.name}}</td>
+                        <td>{{data.client_name}}</td>
+                        <td>{{data.client_mobile}}</td>
+                        <td>{{data.client_email }}</td>
+                        <td>{{data.city }}</td>
+                        <td>{{data.state }}</td>
+                        <td>{{data.addr1 }} {{data.addr2}}</td>
+                        <td>{{data.zip_code}}</td>
+                        <td>{{data.meachine_name.region}}</td>
+                        <td>{{data.start_date }}</td>
+                        <td>{{data.end_date }}</td>
+
+ 
+                    </tr>
+                {% endfor %}
+ 
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
