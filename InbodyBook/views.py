@@ -40,8 +40,9 @@ def index(request):
                                             inbodyUser=add_user,meachine_name=add_meachine)
         add_Institution.save()
         notify="sucess"
-    notify =" "
-    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions,'notify':notify})
+        return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions,'notify':notify})
+
+    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions})
 
 def show_record(request):
     records = Institution.objects.all()

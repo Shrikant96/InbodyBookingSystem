@@ -2,6 +2,13 @@
     {% block bookingform %}
         <div class="container" style="background-color: white; border-radius: 15px;">
             <br>
+            {% if notify == "sucess" %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Your data has been saved <strong>Successfully.</strong>  
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            <br>
             <center><h1>Book  Demo Meachine</h1></center>
             <form class="row g-3 needs-validation " action="" method="post" >
                 {% csrf_token %}
