@@ -39,7 +39,9 @@ def index(request):
                                             addr1=addr1,addr2=addr2,zip_code=zip_code,start_date=start_date,end_date=end_date,
                                             inbodyUser=add_user,meachine_name=add_meachine)
         add_Institution.save()
-    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions})
+        notify="sucess"
+    notify =" "
+    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions,'notify':notify})
 
 def show_record(request):
     records = Institution.objects.all()
