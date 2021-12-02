@@ -1,9 +1,17 @@
 from django.http import request
 from django.shortcuts import render
 from .models import Meachines,InbodyUser,Institution,IndiaRegions
+import json
 # Create your views here.
 def index(request):
     meachines_list = Meachines.objects.filter(booked =False)
+
+    machine_west_1 =  Meachines.objects.filter(booked =False, region__id=1)
+    machine_west_2 = Meachines.objects.filter(booked =False, region__id=2)
+    machine_north =  Meachines.objects.filter(booked =False, region__id=4)
+    machine_south = Meachines.objects.filter(booked =False, region__id=5)
+    machine_east = Meachines.objects.filter(booked =False, region__id=6)
+
     user_list = InbodyUser.objects.all()
     indian_regions = IndiaRegions.objects.all()
     #### Client ####
@@ -40,10 +48,33 @@ def index(request):
                                             inbodyUser=add_user,meachine_name=add_meachine)
         add_Institution.save()
         notify="sucess"
-        return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions,'notify':notify})
 
-    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,'indian_regions':indian_regions})
+        return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,
+        'indian_regions':indian_regions,
+        'notify':notify,
+        'machine_east':machine_east,
+        'machine_west_1':machine_west_1,
+        'machine_west_2':machine_west_2,
+        'machine_north':machine_north,
+        'machine_south':machine_south
+        })
 
+    return render(request,'form.html',{'meachines_list':meachines_list, 'users':user_list,
+    'indian_regions':indian_regions,
+    'machine_east':machine_east,
+    'machine_west_1':machine_west_1,
+    'machine_west_2':machine_west_2,
+    'machine_north':machine_north,
+    'machine_south':machine_south    
+    
+    })
+
+def region(request):
+    # arm=request.GET.get('regioon')
+    arm=json.loads(request.body)
+    print("#############################")
+    print(arm)
+    return render(request,'form.html')
 def show_record(request):
     records = Institution.objects.all()
     return render(request,'record.html',{'records':records})

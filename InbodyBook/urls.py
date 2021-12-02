@@ -20,5 +20,7 @@ from . import views
 urlpatterns = [
     path("", views.index, name='index'),
     path("show-record", views.show_record, name='show_record'),
+    path("region", views.region, name='region'),
+  
 
 ]

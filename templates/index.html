@@ -44,7 +44,7 @@
       <div class="btn">
         <div><a href="/" class="btn btn-primary ">Booking</a></div>
         <div><a href="show-record" class="btn btn-primary ">Show Records</a></div>
-        <div><a href="#" class="btn btn-primary">Export to XL</a></div>
+        <div id="xl"><a href="#" class="btn btn-primary">Export to XL</a></div>
       </div>
     </div>
 <br><br>
@@ -54,7 +54,71 @@
   {% endblock %}
 <br><br>
     <!-- Optional JavaScript; choose one of the two! -->
+  <script>
+ 
+    let region = document.getElementById('validationCustom0444');
+    region.addEventListener('change', RegionSelection)
+    function selected_region(){
+      //alert(region.value);
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET','region',true);
+      xhr.getResponseHeader('Content-type','application/json');
+      xhr.onprogress = function(){
+        console.log('onprocess');
+        console.log(region.value);
 
+      }
+      xhr.onload=function(){
+        if(this.status===200){
+          console.log(this.responseText);
+        }
+        else{
+          console.log("some error occured");
+        }
+      }
+      arms={"regioon":region.value};
+      xhr.send(arms);
+      console.log("this is called");
+    }
+    function RegionSelection(){
+      alert(region.value);
+      if(region.value == 'West 1'){
+        document.getElementById('west_1').style.display="block";
+        document.getElementById('west_2').style.display="none";
+        document.getElementById('north').style.display="none";
+        document.getElementById('south').style.display="none";
+        document.getElementById('east').style.display="none";
+      }
+      if(region.value == 'East'){
+        document.getElementById('west_1').style.display="none";
+        document.getElementById('west_2').style.display="none";
+        document.getElementById('north').style.display="none";
+        document.getElementById('south').style.display="none";
+        document.getElementById('east').style.display="block";
+      }
+      if(region.value == 'West 2'){
+        document.getElementById('west_1').style.display="none";
+        document.getElementById('west_2').style.display="block";
+        document.getElementById('north').style.display="none";
+        document.getElementById('south').style.display="none";
+        document.getElementById('east').style.display="none";
+      }
+      if(region.value == 'North'){
+        document.getElementById('west_1').style.display="none";
+        document.getElementById('west_2').style.display="none";
+        document.getElementById('north').style.display="block";
+        document.getElementById('south').style.display="none";
+        document.getElementById('east').style.display="none";
+      }
+      if(region.value == 'South'){
+        document.getElementById('west_1').style.display="none";
+        document.getElementById('west_2').style.display="none";
+        document.getElementById('north').style.display="none";
+        document.getElementById('south').style.display="block";
+        document.getElementById('east').style.display="none";
+      }
+    }
+  </script>
  
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
