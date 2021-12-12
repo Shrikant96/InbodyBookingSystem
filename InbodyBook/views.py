@@ -10,12 +10,12 @@ import time
 def index(request):
     Machine_list = Machine.objects.filter(booked =False)
 
-    machine_west_1 =  Machine.objects.filter(booked =False, region__id=4)
-    machine_west_2 = Machine.objects.filter(booked =False, region__id=5)
-    machine_north =  Machine.objects.filter(booked =False, region__id=3)
-    machine_south = Machine.objects.filter(booked =False, region__id=2)
-    machine_east = Machine.objects.filter(booked =False, region__id=1)
-
+    machine_west_1 =  Machine.objects.filter(booked =False, region__region="West 1")
+    machine_west_2 = Machine.objects.filter(booked =False, region__region="West 2")
+    machine_north =  Machine.objects.filter(booked =False, region__region="North")
+    machine_south = Machine.objects.filter(booked =False, region__region="South")
+    machine_east = Machine.objects.filter(booked =False, region__region="East")
+    
     user_list = InbodyUser.objects.all()
     indian_regions = IndiaRegions.objects.all()
     #### Client ####
