@@ -85,76 +85,6 @@ def show_record(request):
     return render(request,'record.html',{'records':records})
 
 # ***** Export To XL *****
-# def export_to_xl(request):
-    
-#     # workbook = xlwt.Workbook() 
-    
-#     # sheet = workbook.add_sheet("Sheet Name")
-    
-#     # # Applying multiple styles
-#     # style = xlwt.easyxf('font: bold 1, color red;')
-    
-#     # # Writing on specified sheet
-#     # sheet.write(0, 0, 'SAMPLE', style)
-  
-#     # workbook.save("sample.xls")
- 
- 
-#     # response = redirect('/show-record')
-#     # return response
- 
-#     response = HttpResponse(content_type='application/ms-excel')
-#     response['Content-Disposition'] = 'attachment; filename="users.xlsx' 
-
-#     wb = xlwt.Workbook(encoding='utf-8')
-#     font_style = xlwt.XFStyle()
-#     font_style.font.bold = True
-#     ws = wb.add_sheet('Booking_records') # this will make a sheet named Users Data
-   
-#     row = 1
-#     col = 0
-#     data = Institution.objects.all()
-#     for res in data:
-#         ws.write(row, col,res.institution_name)
-#         ws.write(row, col+1,res.client_name)
-#         ws.write(row, col+2,res.client_mobile)
-#         ws.write(row, col+3,res.client_email)
-#         ws.write(row, col+4,res.city)
-#         ws.write(row, col+5,res.state)
-#         ws.write(row, col+6,res.addr1)
-#         #### if conditon need to be add ### 
-#         ws.write(row, col+7,res.addr2)
-#         ws.write(row, col+8,res.zip_code)
-#         ws.write(row, col+9,res.start_date)
-#         ws.write(row, col+10,res.end_date) 
-#         ws.write(row, col+11,res.inbodyUser.name)
-#         ws.write(row, col+12,res.meachine_name.meachine_name) 
-
- 
- 
-#     # # Sheet header, first row
-#     # row_num = 0
-
-#     # font_style = xlwt.XFStyle()
-#     # font_style.font.bold = True
-
-#     # columns = ['Username', 'First Name', 'Last Name', 'Email Address', ]
-
-#     # for col_num in range(len(columns)):
-#     #     ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column 
-
-#     # # Sheet body, remaining rows
-#     # font_style = xlwt.XFStyle()
-
-#     # rows = User.objects.all().values_list('username', 'first_name', 'last_name', 'email')
-#     # for row in rows:
-#     #     row_num += 1
-#     #     for col_num in range(len(row)):
-#     #         ws.write(row_num, col_num, row[col_num], font_style)
-
-#     wb.save(response)
-
-#     return response
 import time
 def export_to_xl(request):
     response = HttpResponse(content_type='application/ms-excel')
@@ -197,3 +127,6 @@ def export_to_xl(request):
     wb.save(response)
 
     return response
+    
+def qrcode(request):
+    pass
