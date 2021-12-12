@@ -21,6 +21,7 @@ urlpatterns = [
     path("", views.index, name='index'),
     path("show-record", views.show_record, name='show_record'),
     path("region", views.region, name='region'),
+    path("xl",views.export_to_xl, name="export_to_xl"),
   
 
 ]

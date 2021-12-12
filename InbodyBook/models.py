@@ -21,7 +21,7 @@ class InbodyUser(models.Model):
         return self.name
 
 # ***** Meachine Model *****
-class Meachines(models.Model):
+class Machine(models.Model):
     meachine_name = models.CharField(max_length=20)
     booked = models.BooleanField(default=False)
     # **** Relationship ****
@@ -49,7 +49,7 @@ class Institution(models.Model):
     demo_meachine = models.CharField(max_length=50)
     # *** Relationships keys ***
     inbodyUser = models.ForeignKey(InbodyUser, on_delete=models.CASCADE)
-    meachine_name = models.ForeignKey(Meachines,on_delete=models.CASCADE)
+    meachine_name = models.ForeignKey(Machine,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.institution_name

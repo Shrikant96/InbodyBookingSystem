@@ -1,5 +1,5 @@
 from django.contrib import admin
-from InbodyBook.models import Institution, InbodyUser, Meachines,IndiaRegions
+from InbodyBook.models import Institution, InbodyUser, Machine,IndiaRegions
 # Register your models here.
 @admin.register(Institution)
 class InstitutionAdmin(admin.ModelAdmin):
@@ -11,8 +11,8 @@ class InstitutionAdmin(admin.ModelAdmin):
 class InbodyUserAdmin(admin.ModelAdmin):
     list_display=('id','name','email','mobile')
 
-@admin.register(Meachines)
-class Meachines(admin.ModelAdmin):
+@admin.register(Machine)
+class Machine(admin.ModelAdmin):
     list_display=('id','meachine_name','region','booked')
 
 @admin.register(IndiaRegions)
