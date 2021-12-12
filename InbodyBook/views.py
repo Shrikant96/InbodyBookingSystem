@@ -85,6 +85,7 @@ def show_record(request):
     return render(request,'record.html',{'records':records})
 
 # ***** Export To XL *****
+ 
 import time
 def export_to_xl(request):
     response = HttpResponse(content_type='application/ms-excel')
