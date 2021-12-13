@@ -18,8 +18,11 @@ def index(request):
     
     user_list = InbodyUser.objects.all()
     indian_regions = IndiaRegions.objects.all()
+    
+    notify="error"
     #### Client ####
-    if request.method == 'POST':
+    if request.method == "POST":
+    
         user_id = request.POST.get("user_name")
         institution_name = request.POST.get("institution_name")
         client_name = request.POST.get("client_name")
@@ -30,13 +33,39 @@ def index(request):
         addr1 = request.POST.get("addr1")
         addr2 = request.POST.get("addr2")
         zip_code = request.POST.get("zip_code")
-
+ 
         # region = request.POST.get("region")
 
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
-        meachine_id = request.POST.get("meachine_name")
-
+        meachine_id_east = request.POST.get("meachine_name_east")
+        meachine_id_west_1 = request.POST.get("meachine_name_west_1")
+        meachine_id_west_2 = request.POST.get("meachine_name_west_2")
+        meachine_id_north = request.POST.get("meachine_name_north")
+        meachine_id_south = request.POST.get("meachine_name_south")
+        if meachine_id_east:
+            meachine_id= meachine_id_east
+        if meachine_id_west_1:
+            meachine_id=meachine_id_west_1
+        if meachine_id_west_2:
+            meachine_id=meachine_id_west_2
+        if meachine_id_north:
+            meachine_id=meachine_id_north
+        if meachine_id_south:
+            meachine_id=meachine_id_south
+        ##### NO Vacent Machines #####
+        else:
+            print("this is called")
+            return render(request,'form.html',{'Machine_list':Machine_list, 'users':user_list,
+                'indian_regions':indian_regions,
+                'machine_east':machine_east,
+                'machine_west_1':machine_west_1,
+                'machine_west_2':machine_west_2,
+                'machine_north':machine_north,
+                'machine_south':machine_south,
+                'notify':"error_1",    
+                
+                })
         # add_region = IndiaRegions.objects.get(id=int(region))
         
         # connect_region_to_meachine = Machine(meachine_name=)
@@ -53,23 +82,15 @@ def index(request):
         add_Institution.save()
         notify="sucess"
 
-        return render(request,'form.html',{'Machine_list':Machine_list, 'users':user_list,
-        'indian_regions':indian_regions,
-        'notify':notify,
-        'machine_east':machine_east,
-        'machine_west_1':machine_west_1,
-        'machine_west_2':machine_west_2,
-        'machine_north':machine_north,
-        'machine_south':machine_south
-        })
-
+ 
     return render(request,'form.html',{'Machine_list':Machine_list, 'users':user_list,
     'indian_regions':indian_regions,
     'machine_east':machine_east,
     'machine_west_1':machine_west_1,
     'machine_west_2':machine_west_2,
     'machine_north':machine_north,
-    'machine_south':machine_south    
+    'machine_south':machine_south,
+    'notify':notify,    
     
     })
 

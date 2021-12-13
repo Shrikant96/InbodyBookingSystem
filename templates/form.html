@@ -9,9 +9,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             {% endif %}
+            <!-- No Vacient Machine -->
+            {% if notify == "error_1" %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>All Machines are occupied.</strong> Please connect to administrator.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
             <br>
+ 
             <center><h1>Book  Demo Machine</h1></center>
-            <form class="row g-3 needs-validation " action="" method="post" >
+            <form class="row g-3 needs-validation" method="POST">
                 {% csrf_token %}
                 <!-- k -->
                 <div class="col-md-12">
@@ -135,7 +143,7 @@
                 </div>
                 <div class="col-md-3" id="east" style="display: none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
-                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    <select class="form-select" id="validationCustom04"   name="meachine_name_east" >
                     {% for meachine in machine_east %}
                         <option selected   value="{{meachine.id}}">{{meachine}}</option>
                     {% endfor %}
@@ -146,7 +154,7 @@
                 </div>
                 <div class="col-md-3" id="west_1" style="display:none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
-                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    <select class="form-select" id="validationCustom04"   name="meachine_name_west_1" >
                     {% for meachine in machine_west_1 %}
                         <option selected   value="{{meachine.id}}">{{meachine}}</option>
                     {% endfor %}
@@ -157,7 +165,7 @@
                 </div>
                 <div class="col-md-3" id="west_2" style="display:none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
-                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    <select class="form-select" id="validationCustom04"   name="meachine_name_west_2" >
                     {% for meachine in machine_west_2 %}
                         <option selected   value="{{meachine.id}}">{{meachine}}</option>
                     {% endfor %}
@@ -168,7 +176,7 @@
                 </div>
                 <div class="col-md-3" id="north" style="display:none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
-                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    <select class="form-select" id="validationCustom04"   name="meachine_name_north" >
                     {% for meachine in machine_north %}
                         <option selected   value="{{meachine.id}}">{{meachine}}</option>
                     {% endfor %}
@@ -179,7 +187,7 @@
                 </div>
                 <div class="col-md-3" id="south" style="display:none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
-                    <select class="form-select" id="validationCustom04" required name="meachine_name" >
+                    <select class="form-select" id="validationCustom04"   name="meachine_name_south" >
                     {% for meachine in machine_south %}
                         <option selected   value="{{meachine.id}}">{{meachine}}</option>
                     {% endfor %}
@@ -200,7 +208,7 @@
                 </div>
                 </div>
                 <div class="col-12">
-                <button class="btn btn-primary" type="submit" value="submit">Submit form</button>
+                <input class="btn btn-primary" type="submit" value="Submit Form"  name="submit_form">
                 </div>
             </form>        
             <br><br>
