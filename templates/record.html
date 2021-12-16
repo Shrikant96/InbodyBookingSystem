@@ -2,27 +2,36 @@
     {% block recordTable %}
         <div class="container-fluid">
             <div class="btn">
-                <div id="xl"><a href="xl" class="btn btn-success">Export to XL</a></div>
-          
+                <div id="xl">
+                    <a href="xl" class="btn btn-success">Export to XL</a>
+                </div>
+                <div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Institution  </th>
-                    <th scope="col">Meachine</th>
-                    <th scope="col">InbodyUser </th>
-                    <th scope="col">ClientName </th>
-                    <th scope="col">ClientMobile </th>
-                    <th scope="col">ClientEmail </th>
-                    <th scope="col">City </th>
-                    <th scope="col">State </th>
-                    <th scope="col">Addr </th>
-                    <th scope="col">ZipCode </th>
-                    <th scope="col">Region </th>
-                    <th scope="col">StartDate </th>
-                    <th scope="col">EndDate </th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Institution  </th>
+                        <th scope="col">Meachine</th>
+                        <th scope="col">InbodyUser </th>
+                        <th scope="col">ClientName </th>
+                        <th scope="col">ClientMobile </th>
+                        <th scope="col">ClientEmail </th>
+                        <th scope="col">City </th>
+                        <th scope="col">State </th>
+                        <th scope="col">Addr </th>
+                        <th scope="col">ZipCode </th>
+                        <th scope="col">Region </th>
+                        <th scope="col">StartDate </th>
+                        <th scope="col">EndDate </th>
+                    </tr>
                 </thead>
                 <tbody>
                 {% for data in records %}
@@ -41,8 +50,6 @@
                         <td>{{data.meachine_name.region}}</td>
                         <td>{{data.start_date }}</td>
                         <td>{{data.end_date }}</td>
-
- 
                     </tr>
                 {% endfor %}
  

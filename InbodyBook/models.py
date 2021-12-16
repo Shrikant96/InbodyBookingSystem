@@ -26,7 +26,7 @@ class Machine(models.Model):
     booked = models.BooleanField(default=False)
     # **** Relationship ****
     region = models.ForeignKey(IndiaRegions, on_delete=models.CASCADE)
-
+    qr_code = models.ImageField(upload_to='images/machine_qr_code',default="non.png")
 
     def __str__(self):
         return self.meachine_name

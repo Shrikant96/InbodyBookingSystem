@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+    {% block machinecode %}
+        <div class="container">
+            <h5>QRCodes </h5>
+            <table class="table caption-top">
+                <caption>List of users</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Machine Name</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">QR Code </th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for x in machine %}
+                        <tr>
+                            <th scope="row">{{x.id}}</th>
+                            <td>{{x.meachine_name}}</td>
+                            <td>{{x.region.region}}</td>
+                            <td><img src="{{x.qr_code}}" alt="no_code"></td>
+                            <td><button type="button" class="btn btn-primary">Print</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    {% endblock %}
+ 

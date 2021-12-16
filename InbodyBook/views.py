@@ -8,6 +8,7 @@ from django.http import HttpResponse
 import time
 # Create your views here.
 def index(request):
+    meachine_id=None
     Machine_list = Machine.objects.filter(booked =False)
 
     machine_west_1 =  Machine.objects.filter(booked =False, region__region="West 1")
@@ -22,7 +23,6 @@ def index(request):
     notify="error"
     #### Client ####
     if request.method == "POST":
-    
         user_id = request.POST.get("user_name")
         institution_name = request.POST.get("institution_name")
         client_name = request.POST.get("client_name")
@@ -43,19 +43,22 @@ def index(request):
         meachine_id_west_2 = request.POST.get("meachine_name_west_2")
         meachine_id_north = request.POST.get("meachine_name_north")
         meachine_id_south = request.POST.get("meachine_name_south")
+
         if meachine_id_east:
             meachine_id= meachine_id_east
         if meachine_id_west_1:
             meachine_id=meachine_id_west_1
         if meachine_id_west_2:
             meachine_id=meachine_id_west_2
+ 
         if meachine_id_north:
             meachine_id=meachine_id_north
+        
         if meachine_id_south:
             meachine_id=meachine_id_south
         ##### NO Vacent Machines #####
-        else:
-            print("this is called")
+        if meachine_id==None:
+  
             return render(request,'form.html',{'Machine_list':Machine_list, 'users':user_list,
                 'indian_regions':indian_regions,
                 'machine_east':machine_east,
@@ -67,11 +70,23 @@ def index(request):
                 
                 })
         # add_region = IndiaRegions.objects.get(id=int(region))
-        
+        booked_machine = Machine.objects.get(id=meachine_id)
+        if booked_machine.booked==True:
+            return render(request,'form.html',{'Machine_list':Machine_list, 'users':user_list,
+                'indian_regions':indian_regions,
+                'machine_east':machine_east,
+                'machine_west_1':machine_west_1,
+                'machine_west_2':machine_west_2,
+                'machine_north':machine_north,
+                'machine_south':machine_south,
+                'notify':"error_1",    
+                
+                })
         # connect_region_to_meachine = Machine(meachine_name=)
         
         add_user = InbodyUser.objects.get(id=int(user_id))
         Machine.objects.filter(id=int(meachine_id)).update(booked=True)
+ 
         add_meachine = Machine.objects.get(id=int(meachine_id))
 
 
@@ -97,8 +112,7 @@ def index(request):
 def region(request):
     # arm=request.GET.get('regioon')
     arm=json.loads(request.body)
-    print("#############################")
-    print(arm)
+ 
     return render(request,'form.html')
 def show_record(request):
     records = Institution.objects.all()
@@ -151,4 +165,5 @@ def export_to_xl(request):
     return response
     
 def qrcode(request):
-    pass
+    machine =Machine.objects.all()
+    return render(request, 'machinecode.html',{'machine':machine})
