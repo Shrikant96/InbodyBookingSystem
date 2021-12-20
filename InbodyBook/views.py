@@ -114,8 +114,28 @@ def region(request):
     arm=json.loads(request.body)
  
     return render(request,'form.html')
+# Import date class from datetime module
+from datetime import date
 def show_record(request):
+    
     records = Institution.objects.all()
+    if request.method == "POST":
+        postdata = request.POST.copy()
+        filter_name = postdata.get('filter','')
+        if filter_name == "1":
+            # for record in records:
+            #     # print(type(record.end_date))
+            #     if record.end_date > date.today():
+                    
+            #     else:
+            #         print("false")
+            records =  Institution.objects.filter( end_date__gt = date.today())
+            return render(request,'record.html',{'records':records})
+        elif filter_name == "2":
+            records =  Institution.objects.filter( end_date__lt = date.today())
+            return render(request,'record.html',{'records':records})
+            
+        
  
     return render(request,'record.html',{'records':records})
 

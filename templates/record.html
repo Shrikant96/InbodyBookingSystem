@@ -1,13 +1,16 @@
 {% extends 'index.html' %}
     {% block recordTable %}
         <div class="container-fluid">
-            <form action="" method="post">
+            <form action="" method="post" id="myform">
+                {% csrf_token %}
+
                 <div class="btn">
                     <div id="xl">
                         <a href="xl" class="btn btn-success">Export to XL</a>
                     </div>
                     <div>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="filter" name="filter">
+ 
                             <option selected>Filter</option>
                             <option value="1">Live Demos</option>
                             <option value="2">Expired Demos</option>
@@ -16,10 +19,11 @@
                     </div>
                 </div>
             </form>
+            <div class="table-responsive" style="overflow-x: scroll;">
             <table class="table table-striped table-hover">
-                <thead>
+                <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th  scope="col">#</th>
                         <th scope="col">Institution  </th>
                         <th scope="col">Meachine</th>
                         <th scope="col">InbodyUser </th>
@@ -57,5 +61,14 @@
  
                 </tbody>
             </table>
+            </div>
         </div>
+    <script>
+        let filter = document.getElementById("filter");
+        filter.addEventListener('change',submit_filter);
+        function submit_filter(){
+            document.getElementById("myform").submit();
+
+        };
+    </script>
     {% endblock %}
