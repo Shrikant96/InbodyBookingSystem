@@ -17,9 +17,12 @@
             </div>
             {% endif %}
             <br>
- 
+            <div class="alert alert-warning alert-dismissible fade show" id="error" role="alert" style="display: none;">
+                <strong>Please provide valid date inputs</strong> End date can't be less than Start Date !!!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             <center><h1>Book  Demo Machine</h1></center>
-            <form class="row g-3 needs-validation" method="POST">
+            <form class="row g-3 needs-validation" method="POST" onsubmit="return validation()">
                 {% csrf_token %}
                 <!-- k -->
                 <div class="col-md-12">
@@ -128,18 +131,19 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <label for="validationCustom055" class="form-label">Start Date</label>
-                    <input type="date" class="form-control" id="validationCustom055" required name="start_date">
+                    <label for="start_date" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" required name="start_date">
                     <div class="invalid-feedback">
                     Please provide a valid zip.
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <label for="validationCustom05" class="form-label">End Date</label>
-                    <input type="date" class="form-control" id="validationCustom05" required name="end_date">
-                    <div class="invalid-feedback">
+                    <label for="end_date" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" required name="end_date">
+                    <div class="invalid-feedback" >
                     Please provide a valid zip.
                     </div>
+ 
                 </div>
                 <div class="col-md-3" id="east" style="display: none;">
                     <label for="validationCustom04" class="form-label">Select Demo Machine</label>
@@ -208,10 +212,29 @@
                 </div>
                 </div>
                 <div class="col-12">
-                <input class="btn btn-primary" type="submit" value="Submit Form"  name="submit_form">
+                <input class="btn btn-primary" type="submit" value="Submit Form" id="submit" name="submit_form">
                 </div>
             </form>        
             <br><br>
         </div>
+
+<script>
+
+function validation(){
+    let start_date=document.getElementById('start_date').value;
+    let end_date=document.getElementById('end_date').value;
+    var date1 = start_date.split("-");
+    var date2 = end_date.split("-");
+    const start = new Date(date1[0], date1[1], date1[2]);
+    const end = new Date(date2[0],date2[1], date2[2]);
+ 
+    if(end < start){
+        document.getElementById("error").style.display="block";   
+        alert("Start Date Can't be less than End Date");    
+        return false
+     }
+    
+}
+</script>
     {% endblock %}
 
